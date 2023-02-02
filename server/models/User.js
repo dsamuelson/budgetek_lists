@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 const ShoppingEventSchema = require('./ShoppingEvents');
-const Category = require('./Category');
 
 const userSchema = new Schema(
     {
@@ -20,11 +19,20 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        shoppingCatagories: {
-            type: Schema.Types.ObjectId,
-            ref: 'Category',
-            required: false
+        createdAt: {
+            type: Date,
+            default: () => Date.now(),
+            immuteable: true
         },
+        updatedAt: {
+            type: Date,
+            default: () => Date.now()
+        },
+        // shoppingCatagories: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'Category',
+        //     required: false
+        // },
         shoppingEvents: [ShoppingEventSchema],
     },
     {

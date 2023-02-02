@@ -2,11 +2,13 @@ const { gql } = require('apollo-server-express')
 
 const typeDefs = gql`
     type ShoppingCategoriesT {
+        _id: ID
         name: String
         subcategory: [String]
     }
 
     type ShoppingEventsT {
+        _id: ID
         eventTitle: String
         eventCategory: String
         eventSubcategory: String
@@ -27,6 +29,7 @@ const typeDefs = gql`
     }
 
     type Query {
+        categories: shoppingCategoryT
         me: User
         getSingleUser(username: String!): User
         getAllUsers: [User]

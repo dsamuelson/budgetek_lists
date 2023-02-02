@@ -9,11 +9,9 @@ const categorySchema = new Schema({
     trim: true
   },
   subcategories: [{
-    subCategoryTitle: {
         type: String,
         required: true,
         trim: true
-    },
   }]
 });
 

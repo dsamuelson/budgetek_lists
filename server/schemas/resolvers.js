@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Category } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -12,12 +12,12 @@ const resolvers = {
             const userData = await User.findOne({username})
                 .select('-__v -password')
                 .populate('shoppingEvents')
-                .populate('shoppingCategories');
+                // .populate('shoppingCategories');
             if (!userData) {
               const userDataEmail = await User.findOne({email: username})
                 .select('-__v -password')
                 .populate('ShoppingEvents')
-                .populate('shoppingCategories');
+                // .populate('shoppingCategories');
               return userDataEmail
             }
             return userData;
@@ -26,7 +26,7 @@ const resolvers = {
             const userArray = await User.find({})
                 .select('-__v -password')
                 .populate('ShoppingEvents')
-                .populate('shoppingCategories');
+                // .populate('shoppingCategories');
             return userArray;
           },
           me: async (parent, args, context) => {
@@ -34,7 +34,7 @@ const resolvers = {
               const userData = await User.findOne({ _id: context.user._id })
                 .select('-__v -password')
                 .populate('ShoppingEvents')
-                .populate('shoppingCategories');
+                // .populate('shoppingCategories');
       
               return userData;
             }
